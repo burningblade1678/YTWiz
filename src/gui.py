@@ -7,9 +7,9 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QVBoxLayout, QHBoxLayout, QL
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtGui import QPixmap, QIcon
 
-from downloader import download_video
-from converter import convert_video
-from file_manager import save_file, clean_up
+from src.downloader import download_video
+from src.converter import convert_video
+from src.file_manager import save_file, clean_up
 
 class DownloadThread(QThread):
     progress = pyqtSignal(str, int)
@@ -254,7 +254,7 @@ def main():
     app = QApplication(sys.argv)
     
     # Set the application icon
-    app_icon = QIcon("youtube_wizard_logo.png")
+    app_icon = QIcon("wizard_tube_logo.jpg")
     app.setWindowIcon(app_icon)
     
     # Enable custom window frame

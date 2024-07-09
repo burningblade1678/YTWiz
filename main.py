@@ -1,35 +1,10 @@
-# YouTube Video Converter Project
-
-## Project Structure
-'''
-youtube-video-converter/
-│
-├── main.py
-├── downloader.py
-├── converter.py
-├── file_manager.py
-├── requirements.txt
-├── .gitignore
-└── README.md
-'''
-## File Contents
-
-### main.py
-
-
 import argparse
 from downloader import download_video
 from converter import convert_video
 from file_manager import save_file, clean_up
+from gui import main as gui_main
 
-def main():
-    parser = argparse.ArgumentParser(description="YouTube Video Downloader and Converter")
-    parser.add_argument("url", help="YouTube video URL")
-    parser.add_argument("format", choices=["mp4", "mp3", "wav", "avi", "mov"], help="Output format")
-    parser.add_argument("output", help="Output file name")
-    parser.add_argument("--location", default=".", help="Download location (default: current directory)")
-    args = parser.parse_args()
-
+def cli_main(args):
     try:
         print("Downloading video...")
         video_path = download_video(args.url, args.location)
@@ -47,4 +22,18 @@ def main():
         clean_up()
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="YouTube Video Downloader and Converter")
+    parser.add_argument("--cli", action="store_true", help="Run in CLI mode")
+    parser.add_argument("--url", help="YouTube video URL")
+    parser.add_argument("--format", choices=["mp4", "mp3", "wav", "avi", "mov"], help="Output format")
+    parser.add_argument("--output", help="Output file name")
+    parser.add_argument("--location", default=".", help="Download location (default: current directory)")
+    
+    args = parser.parse_args()
+    
+    if args.cli:
+        if not all([args.url, args.format, args.output]):
+            parser.error("--cli mode requires --url, --format, and --output arguments")
+        cli_main(args)
+    else:
+        gui_main()

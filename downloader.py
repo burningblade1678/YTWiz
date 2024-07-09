@@ -1,12 +1,14 @@
-from pytube import YouTube
+import yt_dlp
 
 def download_video(url, output_path):
+    ydl_opts = {
+        'outtmpl': f'{output_path}/%(title)s.%(ext)s',
+        'format': 'bestaudio/best',
+    }
+    
     try:
-        yt = YouTube(url)
-        video = yt.streams.filter(progressive=True, file_extension="mp4").order_by("resolution").desc().first()
-        
-        print(f"Downloading: {yt.title}")
-        video_path = video.download(output_path)
-        return video_path
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(url, download=True)
+            return f"{output_path}/{info['title']}.{info['ext']}"
     except Exception as e:
         raise Exception(f"Error downloading video: {str(e)}")

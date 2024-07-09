@@ -1,6 +1,7 @@
 import sys
 import os
 import zipfile
+from datetime import datetime
 from PyQt5.QtWidgets import (QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, 
                              QComboBox, QFileDialog, QProgressBar, QMessageBox, QListWidget, QCheckBox, QGroupBox, QScrollArea)
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
@@ -71,34 +72,34 @@ class YouTubeConverterGUI(QWidget):
     def initUI(self):
         self.setStyleSheet("""
             QWidget {
-                background-color: #1E1E1E;
+                background-color: #2C2F33;
                 color: #FFFFFF;
                 font-size: 14px;
             }
             QPushButton {
-                background-color: #FF0000;
+                background-color: #7289DA;
                 color: #FFFFFF;
                 border: none;
                 padding: 8px;
                 border-radius: 4px;
             }
             QPushButton:hover {
-                background-color: #CC0000;
+                background-color: #677BC4;
             }
             QLineEdit, QComboBox, QListWidget {
-                background-color: #2D2D2D;
+                background-color: #23272A;
                 color: #FFFFFF;
-                border: 1px solid #3D3D3D;
+                border: 1px solid #7289DA;
                 padding: 5px;
                 border-radius: 4px;
             }
             QProgressBar {
-                border: 2px solid #3D3D3D;
+                border: 2px solid #7289DA;
                 border-radius: 5px;
                 text-align: center;
             }
             QProgressBar::chunk {
-                background-color: #4285F4;
+                background-color: #43B581;
             }
             QCheckBox {
                 spacing: 5px;
@@ -108,7 +109,7 @@ class YouTubeConverterGUI(QWidget):
                 height: 18px;
             }
             QGroupBox {
-                border: 1px solid #3D3D3D;
+                border: 1px solid #7289DA;
                 border-radius: 4px;
                 margin-top: 10px;
             }
@@ -123,7 +124,7 @@ class YouTubeConverterGUI(QWidget):
 
         # Logo
         logo_label = QLabel()
-        logo_pixmap = QPixmap("youtube_wizard_logo.png")  # Make sure to save the image as 'youtube_wizard_logo.png' in the same directory
+        logo_pixmap = QPixmap("youtube_wizard_logo.png")
         logo_label.setPixmap(logo_pixmap.scaledToWidth(200, Qt.SmoothTransformation))
         logo_label.setAlignment(Qt.AlignCenter)
         layout.addWidget(logo_label)
@@ -235,6 +236,11 @@ class YouTubeConverterGUI(QWidget):
         self.progress_bar.setValue(0)
         self.download_button.setEnabled(True)
         QMessageBox.critical(self, "Error", f"An error occurred:\n{error_message}")
+        print(f"Detailed error: {error_message}")  # This will print the full error to the console
+        
+        # Log the error to a file
+        with open("error_log.txt", "a") as log_file:
+            log_file.write(f"{datetime.now()}: {error_message}\n")
 
 def main():
     app = QApplication(sys.argv)

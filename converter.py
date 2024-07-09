@@ -1,9 +1,6 @@
-from moviepy.editor import VideoFileClip, AudioFileClip
-import moviepy.config as config
 import os
-
-# Set a custom FFMPEG binary path if needed
-# config.change_settings({"FFMPEG_BINARY": "/path/to/ffmpeg"})
+import subprocess
+from moviepy.editor import VideoFileClip, AudioFileClip
 
 def convert_video(input_path, output_format):
     try:
@@ -11,22 +8,25 @@ def convert_video(input_path, output_format):
         output_path = f"{os.path.dirname(input_path)}/{base_name}.{output_format}"
         
         if output_format in ["mp4", "avi", "mov"]:
-            clip = VideoFileClip(input_path)
-            
-            # Handle potential FPS issues
-            if clip.fps is None or clip.fps == 0:
-                clip = clip.set_fps(30)  # Set a default FPS if it's not detected
-            
-            clip.write_videofile(output_path, codec="libx264" if output_format == "mp4" else None,
-                                 audio_codec="aac" if output_format == "mp4" else "pcm_s16le",
-                                 threads=4, ffmpeg_params=["-strict", "-2"])
+            # Use ffmpeg directly for video conversion
+            cmd = [
+                "ffmpeg", "-i", input_path,
+                "-c:v", "libx264", "-preset", "medium", "-crf", "23",
+                "-c:a", "aac", "-b:a", "128k",
+                "-movflags", "+faststart",
+                "-y",  # Overwrite output file if it exists
+                output_path
+            ]
+            subprocess.run(cmd, check=True, stderr=subprocess.PIPE)
         elif output_format in ["mp3", "wav"]:
             clip = AudioFileClip(input_path)
             clip.write_audiofile(output_path)
+            clip.close()
         else:
             raise ValueError(f"Unsupported format: {output_format}")
         
-        clip.close()
         return output_path
+    except subprocess.CalledProcessError as e:
+        raise Exception(f"FFmpeg error: {e.stderr.decode()}")
     except Exception as e:
         raise Exception(f"Error converting video: {str(e)}")

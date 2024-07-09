@@ -3,10 +3,10 @@
 block_cipher = None
 
 a = Analysis(
-    ['src\\main.py'],
+    ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('resources\\wizard_tube_logo.jpg', 'resources')],
+    datas=[('resources/wizard_tube_logo.jpg', 'resources')],
     hiddenimports=['src.gui', 'src.downloader', 'src.converter', 'src.file_manager'],
     hookspath=[],
     hooksconfig={},
@@ -35,7 +35,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['resources\\wizard_tube_logo.jpg'],
+    icon=['resources/youtube_wizard_logo.jpg'],
 )
 coll = COLLECT(
     exe,

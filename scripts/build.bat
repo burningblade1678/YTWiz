@@ -1,2 +1,3 @@
 @echo off
-pyinstaller ..\build.spec
+cd ..
+pyinstaller build.spec

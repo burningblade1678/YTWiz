@@ -1,8 +1,10 @@
 import argparse
-from gui import main as gui_main
+from gui import YTWizGUI
 from downloader import download_video
 from converter import convert_video
 from file_manager import save_file, clean_up
+from PyQt5.QtWidgets import QApplication
+import sys
 
 def cli_main(args):
     try:

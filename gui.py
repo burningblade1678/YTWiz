@@ -73,7 +73,7 @@ class YTWizGUI(QWidget):
     def initUI(self):
         self.setStyleSheet("""
             QWidget {
-                background-color: #1E1E1E;
+                background-color: #2D2D2D;
                 color: #FFFFFF;
                 font-size: 14px;
             }
@@ -121,16 +121,11 @@ class YTWizGUI(QWidget):
             }
         """)
 
-        # Set window background to dark grey
-        palette = self.palette()
-        palette.setColor(QPalette.Window, QColor(45, 45, 45))
-        self.setPalette(palette)
-
         layout = QVBoxLayout()
 
         # Logo
         logo_label = QLabel(self)
-        logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "youtube_wizard_logo.png")
+        logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "wizard_tube_logo.jpg")
         logo_pixmap = QPixmap(logo_path)
         if not logo_pixmap.isNull():
             logo_label.setPixmap(logo_pixmap.scaledToWidth(200, Qt.SmoothTransformation))

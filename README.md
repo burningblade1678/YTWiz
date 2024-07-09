@@ -1,78 +1,107 @@
-# YouTube Video Converter
+# YTWiz
 
-This Python application allows you to download YouTube videos and convert them to various formats.
+YTWiz is a user-friendly application for downloading YouTube videos and converting them to various audio formats. With a simple and intuitive interface, YTWiz makes it easy to save your favorite YouTube content for offline listening.
+
+![YTWiz Screenshot](screenshot.png)
 
 ## Features
 
-- Download YouTube videos
-- Convert videos to mp4, mp3, wav, avi, and mov formats
-- Simple command-line interface
-- Customizable output file name and location
-
-## Project Structure
-
-YTwiz/
-│
-├── `main.py`
-├── `downloader.py`
-├── `converter.py`
-├── `file_manager.py`
-├── `requirements.txt`
-├── `.gitignore`
-└── `README.md`
+- Download videos from YouTube
+- Convert videos to popular audio formats (MP3, WAV, OGG)
+- Batch processing for multiple videos
+- Simple and intuitive graphical user interface
+- Cross-platform compatibility (Windows, macOS, Linux)
 
 ## Installation
 
-1. Clone this repository:
+### For End Users
 
-   ```
-   git clone https://github.com/your-username/youtube-video-converter.git
-   cd youtube-video-converter
-   ```
-2. Install the required dependencies:
+#### Windows
+1. Download the latest YTWiz.zip from the [Releases](https://github.com/yourusername/YTWiz/releases) page.
+2. Extract the zip file to a location of your choice (e.g., `C:\Program Files\YTWiz`).
+3. Double-click on `YTWiz.exe` to run the application.
+4. (Optional) Right-click on `YTWiz.exe`, select "Send to" > "Desktop (create shortcut)" to create a desktop shortcut.
 
-   ```
-   pip install -r requirements.txt
-   ```
+#### macOS
+1. Download the latest YTWiz.dmg from the [Releases](https://github.com/yourusername/YTWiz/releases) page.
+2. Open the .dmg file.
+3. Drag the YTWiz app to your Applications folder.
+4. Run YTWiz from your Applications folder or Launchpad.
+
+### For Developers
+
+To set up YTWiz for development:
+
+1. Clone the repository:
+```
+git clone https://github.com/yourusername/YTWiz.git
+cd YTWiz
+```
+
+2. Create and activate a virtual environment:
+
+```
+python -m venv venv
+source venv/bin/activate  # On Windows use venv\Scripts\activate
+```
+3. Install the required dependencies:
+
+```
+pip install -r requirements.txt
+```
+4. run the application:
+
+```
+python main.py
+```
 
 ## Usage
 
-Run the application using the following command:
+1. Launch YTWiz.
+2. Enter a YouTube URL in the input field and click "Add".
+3. Select your desired output format(s) (MP3, WAV, OGG).
+4. Choose the output location for your converted files.
+5. Click "Download and Convert".
+6. Wait for the process to complete. Your files will be saved in the chosen output location.
 
+## Building from Source
+
+To build YTWiz into a standalone executable:
+
+1. Ensure you have PyInstaller installed:
 ```
-python main.py <youtube_url> <output_format> <output_name> [--location <download_location>]
+pip install pyinstaller
 ```
+2. Run the build script:
+- On Windows: `build.bat`
+- On macOS/Linux: `./build.sh`
 
-Example:
+3. The packaged application will be available in the `dist/YTWiz` directory.
 
-```
-python main.py https://www.youtube.com/watch?v=dQw4w9WgXcQ mp3 my_song --location ~/Downloads 
-```
+## Project Structure
 
-## Supported Formats
+- `main.py`: Entry point of the application
+- `gui.py`: GUI implementation
+- `downloader.py`: YouTube video downloading logic
+- `converter.py`: Audio conversion logic
+- `file_manager.py`: File management utilities
+- `build.spec`: PyInstaller specification file
+- `build.bat`/`build.sh`: Build scripts for Windows and macOS/Linux
+- `requirements.txt`: List of Python dependencies
+- `youtube_wizard_logo.png`: Application logo
 
-- mp4: Standard video format, good quality and compatibility
-- mp3: Audio-only format, suitable for music
-- wav: Uncompressed audio format, larger file size but higher quality
-- avi: Older video format, good compatibility with older systems
-- mov: QuickTime video format, commonly used on Apple devices
+## Dependencies
 
-## Limitations
+- Python 3.7+
+- yt-dlp
+- PyQt5
+- moviepy
 
-- Some video formats may not be available for certain YouTube videos
-- High-resolution videos may take longer to download and convert
-- Audio extraction quality depends on the original video's audio quality
-
-## Future Improvements
-
-- Add support for downloading entire playlists
-- Implement a graphical user interface (GUI)
-- Add options for video quality selection
-- Implement multi-threading for faster conversions
+For a complete list of dependencies, see `requirements.txt`.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions to YTWiz are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
@@ -80,11 +109,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- [pytube](https://github.com/pytube/pytube) for YouTube video downloading
-- [MoviePy](https://zulko.github.io/moviepy/) for video conversion
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp) for YouTube video downloading
+- [PyQt5](https://www.riverbankcomputing.com/software/pyqt/) for the graphical user interface
+- [moviepy](https://zulko.github.io/moviepy/) for video/audio conversion
 
 ## Contact
-
-If you have any questions or suggestions, please open an issue or contact burningblade1678.
-
----
+Feel free to open an issue and I'll get back to you asap!

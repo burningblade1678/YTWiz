@@ -121,6 +121,11 @@ class YTWizGUI(QWidget):
             }
         """)
 
+        # Set window background to dark grey
+        palette = self.palette()
+        palette.setColor(QPalette.Window, QColor(45, 45, 45))
+        self.setPalette(palette)
+
         layout = QVBoxLayout()
 
         # Logo
@@ -152,7 +157,7 @@ class YTWizGUI(QWidget):
         format_group = QGroupBox("Output Formats")
         format_layout = QVBoxLayout()
         self.format_checkboxes = []
-        for format in ["mp3", "wav", "ogg", "aac"]:
+        for format in ["mp3", "wav", "ogg"]:  # Removed 'aac'
             checkbox = QCheckBox(format)
             self.format_checkboxes.append(checkbox)
             format_layout.addWidget(checkbox)
@@ -191,8 +196,11 @@ class YTWizGUI(QWidget):
         self.setLayout(main_layout)
 
         self.setWindowTitle("YTWiz")
-        self.setGeometry(300, 300, 600, 500)
-        self.setWindowIcon(QIcon("youtube_wizard_logo.png"))
+        self.setGeometry(100, 100, 1024, 768)
+        
+        # Set window icon
+        icon = QIcon(logo_path)
+        self.setWindowIcon(icon)
 
     def add_url(self):
         url = self.url_input.text()
@@ -249,6 +257,19 @@ class YTWizGUI(QWidget):
 
 def main():
     app = QApplication(sys.argv)
+    
+    # Set the application icon
+    app_icon = QIcon("youtube_wizard_logo.png")
+    app.setWindowIcon(app_icon)
+    
+    # Enable custom window frame
+    app.setStyle("Fusion")
+    
+    # Set the taskbar icon (Windows specific)
+    import ctypes
+    myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+    
     ex = YTWizGUI()
     ex.show()
     sys.exit(app.exec_())

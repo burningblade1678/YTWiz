@@ -25,10 +25,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="YTWiz - YouTube Video Downloader and Converter")
     parser.add_argument("--cli", action="store_true", help="Run in CLI mode")
     parser.add_argument("--url", help="YouTube video URL")
-    parser.add_argument("--format", choices=["mp3", "wav", "ogg", "aac"], help="Output format")
+    parser.add_argument("--format", choices=["mp3", "wav", "ogg"], help="Output format")  # Removed 'aac'
     parser.add_argument("--output", help="Output file name")
     parser.add_argument("--location", default=".", help="Download location (default: current directory)")
-    
+        
     args = parser.parse_args()
     
     if args.cli:

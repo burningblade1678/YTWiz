@@ -2,3 +2,5 @@
 2024-07-09 16:24:52.559673: Error converting to mp4: Error converting video: [WinError 2] The system cannot find the file specified
 2024-07-09 16:25:32.909116: Error converting to mov: Error converting video: [WinError 2] The system cannot find the file specified
 2024-07-09 16:25:33.939443: Error converting to avi: Error converting video: [WinError 2] The system cannot find the file specified
+2024-07-09 16:55:26.274755: Error converting to aac: Error converting audio: [WinError 2] The system cannot find the file specified
+2024-07-09 16:55:30.025627: Error converting to aac: Error converting audio: [WinError 2] The system cannot find the file specified

@@ -1,6 +1,5 @@
-from moviepy.editor import AudioFileClip
-import subprocess
 import os
+from moviepy.editor import AudioFileClip
 
 def convert_video(input_path, output_format):
     try:
@@ -11,9 +10,6 @@ def convert_video(input_path, output_format):
             audio = AudioFileClip(input_path)
             audio.write_audiofile(output_path)
             audio.close()
-        elif output_format == 'aac':
-            # Use FFmpeg for AAC conversion
-            subprocess.run(['ffmpeg', '-i', input_path, '-c:a', 'aac', '-b:a', '192k', output_path], check=True)
         else:
             raise ValueError(f"Unsupported format: {output_format}")
         

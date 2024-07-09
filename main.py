@@ -1,8 +1,8 @@
 import argparse
+from gui import main as gui_main
 from downloader import download_video
 from converter import convert_video
 from file_manager import save_file, clean_up
-from gui import main as gui_main
 
 def cli_main(args):
     try:
@@ -22,10 +22,10 @@ def cli_main(args):
         clean_up()
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="YouTube Video Downloader and Converter")
+    parser = argparse.ArgumentParser(description="YTWiz - YouTube Video Downloader and Converter")
     parser.add_argument("--cli", action="store_true", help="Run in CLI mode")
     parser.add_argument("--url", help="YouTube video URL")
-    parser.add_argument("--format", choices=["mp4", "mp3", "wav", "avi", "mov"], help="Output format")
+    parser.add_argument("--format", choices=["mp3", "wav", "ogg", "aac"], help="Output format")
     parser.add_argument("--output", help="Output file name")
     parser.add_argument("--location", default=".", help="Download location (default: current directory)")
     

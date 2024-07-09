@@ -3,9 +3,10 @@ import os
 import zipfile
 from datetime import datetime
 from PyQt5.QtWidgets import (QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, 
-                             QComboBox, QFileDialog, QProgressBar, QMessageBox, QListWidget, QCheckBox, QGroupBox, QScrollArea)
+                             QFileDialog, QProgressBar, QMessageBox, QListWidget, QCheckBox, QGroupBox, QScrollArea)
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
-from PyQt5.QtGui import QPixmap, QPalette, QColor, QIcon
+from PyQt5.QtGui import QPixmap, QIcon
+
 from downloader import download_video
 from converter import convert_video
 from file_manager import save_file, clean_up
@@ -64,7 +65,7 @@ class DownloadThread(QThread):
         finally:
             clean_up()
 
-class YouTubeConverterGUI(QWidget):
+class YTWizGUI(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -72,34 +73,34 @@ class YouTubeConverterGUI(QWidget):
     def initUI(self):
         self.setStyleSheet("""
             QWidget {
-                background-color: #2C2F33;
+                background-color: #1E1E1E;
                 color: #FFFFFF;
                 font-size: 14px;
             }
             QPushButton {
-                background-color: #7289DA;
+                background-color: #FF0000;
                 color: #FFFFFF;
                 border: none;
                 padding: 8px;
                 border-radius: 4px;
             }
             QPushButton:hover {
-                background-color: #677BC4;
+                background-color: #CC0000;
             }
-            QLineEdit, QComboBox, QListWidget {
-                background-color: #23272A;
+            QLineEdit, QListWidget {
+                background-color: #2D2D2D;
                 color: #FFFFFF;
-                border: 1px solid #7289DA;
+                border: 1px solid #FF0000;
                 padding: 5px;
                 border-radius: 4px;
             }
             QProgressBar {
-                border: 2px solid #7289DA;
+                border: 2px solid #FF0000;
                 border-radius: 5px;
                 text-align: center;
             }
             QProgressBar::chunk {
-                background-color: #43B581;
+                background-color: #FF0000;
             }
             QCheckBox {
                 spacing: 5px;
@@ -109,7 +110,7 @@ class YouTubeConverterGUI(QWidget):
                 height: 18px;
             }
             QGroupBox {
-                border: 1px solid #7289DA;
+                border: 1px solid #FF0000;
                 border-radius: 4px;
                 margin-top: 10px;
             }
@@ -123,11 +124,15 @@ class YouTubeConverterGUI(QWidget):
         layout = QVBoxLayout()
 
         # Logo
-        logo_label = QLabel()
-        logo_pixmap = QPixmap("youtube_wizard_logo.png")
-        logo_label.setPixmap(logo_pixmap.scaledToWidth(200, Qt.SmoothTransformation))
-        logo_label.setAlignment(Qt.AlignCenter)
-        layout.addWidget(logo_label)
+        logo_label = QLabel(self)
+        logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "youtube_wizard_logo.png")
+        logo_pixmap = QPixmap(logo_path)
+        if not logo_pixmap.isNull():
+            logo_label.setPixmap(logo_pixmap.scaledToWidth(200, Qt.SmoothTransformation))
+            logo_label.setAlignment(Qt.AlignCenter)
+            layout.addWidget(logo_label)
+        else:
+            print(f"Failed to load logo from: {logo_path}")
 
         # URL input
         url_layout = QHBoxLayout()
@@ -147,7 +152,7 @@ class YouTubeConverterGUI(QWidget):
         format_group = QGroupBox("Output Formats")
         format_layout = QVBoxLayout()
         self.format_checkboxes = []
-        for format in ["mp4", "mp3", "wav", "avi", "mov"]:
+        for format in ["mp3", "wav", "ogg", "aac"]:
             checkbox = QCheckBox(format)
             self.format_checkboxes.append(checkbox)
             format_layout.addWidget(checkbox)
@@ -185,8 +190,8 @@ class YouTubeConverterGUI(QWidget):
         main_layout.addWidget(scroll)
         self.setLayout(main_layout)
 
-        self.setWindowTitle("YouTube Video Wizard")
-        self.setGeometry(300, 300, 800, 600)
+        self.setWindowTitle("YTWiz")
+        self.setGeometry(300, 300, 600, 500)
         self.setWindowIcon(QIcon("youtube_wizard_logo.png"))
 
     def add_url(self):
@@ -244,7 +249,7 @@ class YouTubeConverterGUI(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    ex = YouTubeConverterGUI()
+    ex = YTWizGUI()
     ex.show()
     sys.exit(app.exec_())
 

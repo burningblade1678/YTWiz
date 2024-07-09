@@ -2,12 +2,11 @@
 
 block_cipher = None
 
-a = Analysis(['main.py'],
+a = Analysis(['src/main.py'],
              pathex=[],
              binaries=[],
-             datas=[('youtube_wizard_logo.png', '.')],
-             hiddenimports=['gui', 'downloader', 'converter', 'file_manager'],
-             hookspath=[],
+             datas=[('resources/youtube_wizard_logo.png', 'resources')],
+             hiddenimports=['src.gui', 'src.downloader', 'src.converter', 'src.file_manager']
              hooksconfig={},
              runtime_hooks=[],
              excludes=[],

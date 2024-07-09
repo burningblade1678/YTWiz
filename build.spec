@@ -3,7 +3,7 @@
 block_cipher = None
 
 a = Analysis(
-    ['main.py'],
+    ['src/main.py'],
     pathex=[],
     binaries=[],
     datas=[('resources/wizard_tube_logo.jpg', 'resources')],
@@ -35,7 +35,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['resources/youtube_wizard_logo.jpg'],
+    icon=['resources/wizard_tube_logo.jpg'],
 )
 coll = COLLECT(
     exe,

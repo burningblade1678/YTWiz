@@ -16,7 +16,7 @@ IMPORTANT: Do NOT post this list to the issue-tracker. Use it as a basis for
 
 missing module named pwd - imported by posixpath (delayed, conditional, optional), shutil (delayed, optional), tarfile (optional), pathlib (delayed, optional), subprocess (delayed, conditional, optional), getpass (delayed), netrc (delayed, conditional), http.server (delayed, optional), pkg_resources._vendor.backports.tarfile (optional)
 missing module named grp - imported by shutil (delayed, optional), tarfile (optional), pathlib (delayed, optional), subprocess (delayed, conditional, optional), pkg_resources._vendor.backports.tarfile (optional)
-missing module named posix - imported by os (conditional, optional), shutil (conditional), importlib._bootstrap_external (conditional), posixpath (optional)
+missing module named posix - imported by os (conditional, optional), posixpath (optional), shutil (conditional), importlib._bootstrap_external (conditional)
 missing module named resource - imported by posix (top-level)
 missing module named _frozen_importlib_external - imported by importlib._bootstrap (delayed), importlib (optional), importlib.abc (optional), zipimport (top-level)
 excluded module named _frozen_importlib - imported by importlib (optional), importlib.abc (optional), zipimport (top-level)
@@ -326,6 +326,3 @@ missing module named yt_dlp.utils.decodeOption - imported by yt_dlp.utils (top-l
 missing module named yt_dlp.utils.DownloadError - imported by yt_dlp.utils (top-level), yt_dlp.cookies (top-level), yt_dlp.downloader.fragment (top-level), yt_dlp.YoutubeDL (top-level), yt_dlp.downloader.niconico (top-level), yt_dlp (top-level)
 missing module named yt_dlp.utils.NO_DEFAULT - imported by yt_dlp.utils (top-level), yt_dlp.update (top-level), yt_dlp.downloader (top-level), yt_dlp.downloader.common (top-level), yt_dlp.extractor.common (top-level), yt_dlp.jsinterp (top-level), yt_dlp.extractor.youtube (top-level), yt_dlp.extractor.adobepass (top-level), yt_dlp.extractor.onet (top-level), yt_dlp.extractor.zdf (top-level), yt_dlp.extractor.drtuber (top-level), yt_dlp.extractor.heise (top-level), yt_dlp.extractor.pornhub (top-level), yt_dlp.extractor.tvn24 (top-level), yt_dlp.extractor.xnxx (top-level), yt_dlp.YoutubeDL (top-level), yt_dlp (top-level)
 missing module named yt_dlp.utils.decodeFilename - imported by yt_dlp.utils (top-level), yt_dlp.postprocessor.movefilesafterdownload (top-level)
-missing module named 'src.file_manager' - imported by gui (top-level)
-missing module named 'src.converter' - imported by gui (top-level)
-missing module named src - imported by gui (top-level)

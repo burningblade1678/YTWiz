@@ -7,9 +7,9 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QVBoxLayout, QHBoxLayout, QL
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtGui import QPixmap, QIcon, QPalette, QColor
 
-from .downloader import download_video
-from .converter import convert_video
-from .file_manager import save_file, clean_up
+from src.downloader import download_video
+from src.converter import convert_video
+from src.file_manager import save_file, clean_up
 
 class DownloadThread(QThread):
     progress = pyqtSignal(str, int)

@@ -2,7 +2,7 @@
  False,
  False,
  True,
- ['C:\\Users\\Johnathan Bell\\YTWiz\\resources\\wizard_tube_logo.jpg'],
+ ['C:\\Users\\Johnathan Bell\\YTWiz\\resources/wizard_tube_logo.jpg'],
  None,
  False,
  False,
@@ -85,7 +85,7 @@
  [],
  False,
  False,
- 1720562407,
+ 1720564824,
  [('runw.exe',
    'C:\\Users\\Johnathan '
    'Bell\\YTWiz\\wiz\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\runw.exe',
